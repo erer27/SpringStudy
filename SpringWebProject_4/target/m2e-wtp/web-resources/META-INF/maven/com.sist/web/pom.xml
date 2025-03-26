@@ -29,6 +29,13 @@
         </repository>
 	</repositories>
 	<dependencies>
+		<!-- <dependency> 
+		  <groupId>org.sun.ids</groupId>
+		  <artifactId>ha</artifactId>
+		  <version>1.0</version>
+		  <scope>system</scope>
+		  <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib</systemPath>
+		</dependency>   --> 
 		<dependency>
 		  <!-- jsoup HTML parser library @ https://jsoup.org/ -->
 		  <groupId>org.jsoup</groupId>

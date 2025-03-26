@@ -26,9 +26,5 @@
 		p:dataSource-ref="ds"
 	/>
 	<!-- Mapper구현 -->
-	<bean id="mapper"
-		class="org.mybatis.spring.mapper.MapperFactoryBean"
-		p:sqlSessionFactory-ref="ssf"
-		p:mapperInterface="com.sist.mapper.BoardMapper"
-	/>
+	<mybatis-spring:scan base-package="com.sist.mapper" factory-ref="ssf"/>
 </beans>

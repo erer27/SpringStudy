@@ -13,10 +13,42 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	<aop:aspectj-autoproxy/>
 	<context:component-scan base-package="com.sist.*"/>
+	<mvc:annotation-driven/>
+	<!-- 
+		sendRedirect => forward처럼 데이터를 전송
+		 = RedirectAttributes ra
+		   ra.addAttribute("",값)
+		   ======================
+		   return "redirect:detail.do?no=1"
+		model.addAttribute("키",Object) => request
+	 -->
+	 <!-- 
+	 	사용자 요청 (.do) ===== DispatcherServlet : 요청을 받아서 응답
+	 								| 
+	 							HandlerMapping : @RequestMapping을 찾아서 메소드 호출
+	 								|
+	 							Controller = @RequestMapping : 개발자 = 요청에 대한 처리
+	 								| Model
+	 							ViewResolver : JSP를 찾아서 request를 전송
+	 								| request변환 => 경로명 / 확장자
+	 							   JSP
+	 							   
+	 							=> @RequestMapping
+	 									  |
+	 							   ================
+	 							   |			  |
+	 							 @GetMapping	@PostMapping => Spring6에서는 @RequestMapping이 제거
+	 							 
+	 							 	service() / doGet(), doPost()
+	  -->
 	<bean id="viewResolver" 
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/"
 		p:suffix=".jsp"
 	/>
-	<!-- tiles / multipart -->
+	<!-- tiles / multipart 
+		multipartResolver : Spring에서 사용
+	-->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>
