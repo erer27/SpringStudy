@@ -1,5 +1,6 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,4 +14,8 @@ public interface FileInfoMapper {
 	@Select("SELECT * FROM springfileinfo fileinfo "
 			+ "WHERE no=#{no}")
 	public List<FileInfoVO> fileListData(int no);
+	
+	@Delete("DELETE FROM springfileInfo "
+			+"WHERE no=#{no}")
+	public void fileInfoDelete(int no);
 }

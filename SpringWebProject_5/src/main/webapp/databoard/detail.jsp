@@ -47,7 +47,7 @@
 					<td colspan="3">
 						<ul>
 							<c:forEach var="fvo" items="${list }">
-								<li>${fvo.filename }(${fvo.filesize }Bytes)</li>
+								<li><a href="../databoard/download.do?fn=${fvo.filename }">${fvo.filename }(${fvo.filesize }Bytes)</a></li>
 							</c:forEach>
 						</ul>
 					</td>
