@@ -37,7 +37,7 @@ p {
 				<li ${i==curpage?"class=active":"" }><a href="../main/main.do?page=${i }">${i }</a></li>
 			</c:forEach>
 			<c:if test="${endPage<totalpage }">
-			<li><a href="../main/main.do?page=${endPage+1 }">&lt;</a></li>
+			<li><a href="../main/main.do?page=${endPage+1 }">&gt;</a></li>
 			</c:if>
 		</ul>
 	</div>	

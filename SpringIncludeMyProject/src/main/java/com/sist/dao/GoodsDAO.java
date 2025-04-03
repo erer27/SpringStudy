@@ -26,4 +26,14 @@ public class GoodsDAO {
 	{
 		return mapper.goodsTotalPage();
 	}
+	
+	public List<GoodsVO> goodsFindData(Map map)
+	{
+		return mapper.goodsFindData(map);
+	}
+	
+	public int goodsFindTotalPage(Map map)
+	{
+		return mapper.goodsFindTotalPage(map);
+	}
 }

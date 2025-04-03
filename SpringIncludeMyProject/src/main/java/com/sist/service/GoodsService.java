@@ -7,4 +7,7 @@ public interface GoodsService {
 	public GoodsVO goodsDetailData(int no);
 	public List<GoodsVO> goodsListData(Map map);
 	public int goodsTotalPage();
+	public List<GoodsVO> goodsFindData(Map map);
+	public int goodsFindTotalPage(Map map);
+	
 }

@@ -41,4 +41,22 @@ public interface GoodsMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM goods_all")
 	public int goodsTotalPage();
+	
+	/*
+	 * <select id="goodsFindData" resultType="com.sist.vo.GoodsVO" parameterType="hashmap">
+		SELECT no,goods_poster,goods_name,num
+		FROM (SELECT no,goods_poster,goods_name,rownum as num
+		FROM (SELECT + INDEX_ASC(goods_all ga_no_pk)no,goods_poster,goods_name
+		FROM goods_all WHERE goods_name LIKE '%'||#{fd}||'%'))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="goodsFindTotalPage" resultType="int" parameterType="hashmap">
+		SELECT CEIL(COUNT(*)/12.0) FROM goods_all
+		WHERE REGEXP_LIKE(goods_name,#{fd})
+	</select>
+	 */
+	
+	public List<GoodsVO> goodsFindData(Map map);
+	
+	public int goodsFindTotalPage(Map map);
 }

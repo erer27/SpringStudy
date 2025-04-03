@@ -69,4 +69,33 @@ public class GoodsController {
 		
 		return "main/main";
 	}
+	
+	@RequestMapping("find.do")
+	public String goods_find(String page,String fd, Model model)
+	{
+		Map map=CommonsPagination.pageConfig(page, 12);
+		
+		int curpage=(int)map.get("curpage");
+		if(fd==null)
+			fd="감자";
+		map.put("fd", fd);
+		List<GoodsVO> list=service.goodsFindData(map);
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		int totalpage=service.goodsFindTotalPage(map);
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		model.addAttribute("list",list);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
+		model.addAttribute("curpage",curpage);
+		model.addAttribute("totalpage",totalpage);
+		model.addAttribute("fd",fd);
+		
+		model.addAttribute("main_jsp","../goods/find.jsp");
+		return "main/main";
+		
+	}
 }
