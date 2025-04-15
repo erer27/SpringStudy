@@ -28,32 +28,33 @@
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
 	</repositories>
-	<!-- 
-		
-		Spring Framework : Maven (전자정부 프레임워크)
-		==================
-		1. 서버	2. 클라이언트 동시 관리
-		
-		Spring Boot : gradle => 자동 배포
-		=====================
-		1. 서버만 관리
-		2. 클라이언트는 따로 수행
-		
-	 -->
 	<dependencies>
-		<!-- <dependency> 
-		  <groupId>org.sun.ids</groupId>
-		  <artifactId>ha</artifactId>
-		  <version>1.0</version>
-		  <scope>system</scope>
-		  <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib</systemPath>
-		</dependency>   --> 
-		<dependency>
-		  <!-- jsoup HTML parser library @ https://jsoup.org/ -->
-		  <groupId>org.jsoup</groupId>
-		  <artifactId>jsoup</artifactId>
-		  <version>1.18.1</version>
-		</dependency>   
+	     <!-- 
+	       mvnrepository.com = 라이브러리 
+	       없는 경우에는 <systemPath>를 이용해서 등록 
+	       build path , lib에 첨부 = Maven/gradle에 등록
+	       Maven : 1.프로젝트 관리 2. 버전관리 3. 라이브러리 관리 
+	       Spring Framework : Maven (전자정부 프레임워크)
+	       ================= 
+	       1. 서버  2. 클라이언트 동시 관리 
+	       
+	       Spring Boot : gradle  => 자동 배포  
+	       =====================
+	       1. 서버만 관리 
+	       2. 클라이언트는 따로 수행 
+	        
+	     <dependency>
+	      <groupId>org.sun.ids</groupId>
+	      <artifactId>ha</artifactId>
+	      <version>1.0</version>
+	      <scope>system</scope>
+	      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.snu.ids.ha.jar</systemPath>
+	     </dependency> -->
+	     <dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.19.1</version>
+		</dependency>
 	     <!-- MySql -->
 	     <dependency>
 		    <groupId>com.mysql</groupId>
@@ -159,12 +160,23 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-	    
+	    <!-- Jsoup -->
+	    <dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.12.1</version>
+		</dependency>	
 		<!-- JSON -->
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
+		</dependency>
+		<!-- JAXB -->
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.1</version>
 		</dependency>
 		<!-- AspectJ -->
 		<dependency>
@@ -241,6 +253,17 @@
          <artifactId>standard</artifactId>
          <version>1.1.2</version>
       </dependency>
+
+      <dependency>
+         <groupId>org.nuiton.thirdparty</groupId>
+         <artifactId>Rserve</artifactId>
+         <version>1.7-3</version>
+      </dependency>
+      <dependency>
+         <groupId>org.nuiton.thirdparty</groupId>
+         <artifactId>REngine</artifactId>
+         <version>1.7-3</version>
+      </dependency>
       <!-- 
          @Select("<script>SELECT~~ <if test="">")
        -->
@@ -254,7 +277,21 @@
          <artifactId>mybatis-spring</artifactId>
          <version>1.2.0</version>
       </dependency>
-      
+      <dependency>
+         <groupId>org.mongodb</groupId>
+         <artifactId>mongo-java-driver</artifactId>
+         <version>2.13.0-rc1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.nuiton.thirdparty</groupId>
+         <artifactId>JRI</artifactId>
+         <version>0.9-6</version>
+      </dependency>
+      <dependency>
+         <groupId>com.github.lucarosellini.rJava</groupId>
+         <artifactId>JRIEngine</artifactId>
+         <version>0.9-7</version>
+      </dependency>
       <dependency>
          <groupId>aopalliance</groupId>
          <artifactId>aopalliance</artifactId>
@@ -316,6 +353,8 @@
          <version>3.18.2-GA</version>
       </dependency>
 	  
+      
+      
         <dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -511,10 +550,8 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency> 
-		    
+		</dependency>        
 	</dependencies>
-	
 
     <build>
         <plugins>
