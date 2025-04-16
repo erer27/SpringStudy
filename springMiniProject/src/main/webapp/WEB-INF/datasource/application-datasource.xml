@@ -56,6 +56,7 @@
        id="ssf"
        class="org.mybatis.spring.SqlSessionFactoryBean"
        p:dataSource-ref="ds"
+       p:configLocation="/WEB-INF/datasource/Config.xml"
     />
     <!-- SqlSessionFactoryBean을 이용해서 Mapper구현 
          모든 Mapper를 한번에 처리 <mybatis-spring>
