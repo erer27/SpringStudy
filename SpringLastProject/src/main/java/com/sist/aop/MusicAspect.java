@@ -29,8 +29,8 @@ public class MusicAspect {
 		HttpServletRequest request=((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		MusicVO vo=dao.musicTop();
 		System.out.println("title:"+vo.getTitle());
-		String key = youtubeGetKey(vo.getTitle());
-		request.setAttribute("key", key);
+		//String key = youtubeGetKey(vo.getTitle());
+		//request.setAttribute("key", key);
 	}
 	public String youtubeGetKey(String title)
 	{
