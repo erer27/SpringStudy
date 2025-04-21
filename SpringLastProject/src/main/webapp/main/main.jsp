@@ -21,12 +21,13 @@
 
     <!-- Responsive CSS -->
     <link href="../css/responsive/responsive.css" rel="stylesheet">
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Vue JS -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
-	<!-- Preloader Start -->
+    <!-- Preloader Start -->
     <div id="preloader">
         <div class="yummy-load"></div>
     </div>
@@ -38,11 +39,14 @@
     <div id="patter-close">
         <i class="fa fa-times" aria-hidden="true"></i>
     </div>
+    
     <jsp:include page="header.jsp"></jsp:include>
 
     <jsp:include page="${main_jsp }"></jsp:include>
-	
+    
     <jsp:include page="footer.jsp"></jsp:include>
+
+    <!-- ****** Footer Menu Area End ****** -->
 
     <!-- Jquery-2.2.4 js -->
     <script src="../js/jquery/jquery-2.2.4.min.js"></script>
@@ -54,6 +58,5 @@
     <script src="../js/others/plugins.js"></script>
     <!-- Active JS -->
     <script src="../js/active.js"></script>
-    <!-- Vue JS -->
     
 </body>
