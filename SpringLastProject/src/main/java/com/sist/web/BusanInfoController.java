@@ -3,6 +3,8 @@ package com.sist.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,14 +32,16 @@ public class BusanInfoController {
 		return "main/main";
 	}
 	@GetMapping("busan/detail.do")
-	public String busan_detail(int no,Model model)
+	public String busan_detail(int no,Model model,HttpSession session)
 	{
+		String id=(String)session.getAttribute("userid");
 		BusanInfoVO vo=service.busanInfoDetailData(no);
 		String addr1=vo.getAddress();
 		addr1=addr1.substring(addr1.indexOf(" "));
 		String addr2=addr1.trim();
 		addr2=addr2.substring(0,addr2.indexOf(" "));
 		model.addAttribute("vo",vo);
+		model.addAttribute("sessionId",id);
 		model.addAttribute("addr", addr2);
 		model.addAttribute("main_jsp","../busan/info_detail.jsp");
 		return "main/main";
