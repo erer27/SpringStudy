@@ -1,11 +1,14 @@
 package com.sist.dao;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.mapper.CommentMapper;
 import com.sist.vo.CommentVO;
@@ -49,5 +52,68 @@ public class CommentDAO {
 	public void commenInsert(CommentVO vo)
 	{
 		mapper.commenInsert(vo);
+	}
+	/*
+	 * @Update("UPDATE busanReply SET "
+  		+ "msg=#{msg} "
+  		+ "WHERE no=#{no}")
+  public void commentUpdate(@Param("msg") String msg,
+		  @Param("no") int no);
+	 */
+	public void commentUpdate(String msg,int no)
+	{
+		mapper.commentUpdate(msg, no);
+	}
+	/*
+	 * @Select("SELECT group_id,group_step "
+  		+ "FROM busanReply "
+  		+ "WHERE no=#{no}")
+  public CommentVO commentParentInfoData(int no);
+  
+  @Update("UPDATE busanREply SET "
+  		+ "group_step=group_step+1 "
+  		+ "WHERE group_id=#{group_id} AND group_step>#{group_step}")
+  public void commentGroupStepIncrement(CommentVO vo);
+  
+  @Insert("INSERT INTO busanReply(no,cno,type,userid,username,sex,msg,group_id,group_step) "
+  		+ "VALUE((SELECT NVL(MAX(no)+1,1) FROM busanReply) "
+  		+ "#{cno},#{type},#{userid},#{username}, "
+  		+ "#{sex},#{msg},#{group_id},"
+  		+ "#{group_step})")
+  public void commentReplyReplyInsert(CommentVO vo);
+	 */
+	@Transactional
+	public void commentReplyReplyInsert(int pno,CommentVO vo)
+	{
+		CommentVO pvo=mapper.commentParentInfoData(pno);
+		vo.setGroup_id(pvo.getGroup_id());
+		vo.setGroup_step(pvo.getGroup_step()+1);
+		
+		mapper.commentGroupStepIncrement(pvo);
+		mapper.commentReplyReplyInsert(vo);
+	}
+	/*
+	 * @Delete({"<script>"
+	  +"DELETE FROM busanReply "
+	  + "WHERE "
+	  + "<if test=\"group_step==0\">"
+	  +"group_id=#{group_id}"
+	  +"</if>"
+	  +"<if test=\"group_step!=0\">"
+	  +"no=#{no}"
+	  +"</if>"
+	  +"</script>"
+  })
+  public void commentDelete(Map map);
+	 */
+	public void commentDelete(int no)
+	{
+		CommentVO vo=mapper.commentParentInfoData(no);
+		Map map=new HashMap();
+		map.put("no", no);
+		map.put("group_id", vo.getGroup_id());
+		map.put("group_step",vo.getGroup_step());
+		
+		mapper.commentDelete(map);
 	}
 }
